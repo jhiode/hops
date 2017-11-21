@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var ReactRouterDOM = require('react-router-dom');
+var Loadable = require('react-loadable');
 
 var hopsConfig = require('hops-config');
 
@@ -13,7 +14,7 @@ exports.Context = exports.createContext = Context.extend({
     this.mountpoint = options.mountpoint || '#main';
   },
   bootstrap: function () {
-    return Promise.resolve();
+    return Loadable.preloadReady();
   },
   enhanceElement: function (reactElement) {
     return React.createElement(

@@ -32,6 +32,7 @@ module.exports = function Plugin (regExp) {
       var fileName = path.resolve(hopsConfig.cacheDir, 'manifest.json');
       var fileContent = JSON.stringify(assets, null, 2);
       mkdirp.sync(hopsConfig.cacheDir);
+      fs.writeFileSync(path.resolve(hopsConfig.cacheDir, 'stats.json'), compilation.assets['stats.json'].source());
       fs.writeFile(fileName, fileContent, callback);
     });
   };

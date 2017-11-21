@@ -6,6 +6,7 @@ var url = require('url');
 var webpack = require('webpack');
 
 var WriteManifestPlugin = require('../plugins/write-manifest');
+var StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
 
 var hopsConfig = require('hops-config');
 
@@ -33,6 +34,7 @@ module.exports = {
     rules: require('../sections/module-rules')('develop')
   },
   plugins: [
+    new StatsWriterPlugin({ filename: 'stats.json', fields: null }),
     new WriteManifestPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),

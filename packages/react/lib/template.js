@@ -11,6 +11,9 @@ module.exports = function (data) {
     data.helmet.base.toString(),
     data.helmet.meta.toString(),
     data.helmet.link.toString(),
+    data.bundles.map(function (bundle) {
+      return '<link rel="preload" as="script" href="' + bundle + '" />';
+    }).join(''),
     data.assets.css.map(function (css) {
       return '<link rel="stylesheet" href="' + css + '" />';
     }).join(''),

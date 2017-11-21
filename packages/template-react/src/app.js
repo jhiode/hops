@@ -1,13 +1,23 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
+import Loadable from 'react-loadable';
 
 import { render, Miss } from 'hops-react';
 import { createContext } from 'hops-redux';
 
-import { Home } from './home';
-import { Counter } from './counter';
-
 import reducers from './reducers';
+
+const Home = Loadable({
+  loader: () => import('./home').then(({ Home }) => Home),
+  loading: () => (<div>loading...</div>),
+  modules: ['./home']
+});
+
+const Counter = Loadable({
+  loader: () => import('./counter').then(({ Counter }) => Counter),
+  loading: () => (<div>loading...</div>),
+  modules: ['./counter']
+});
 
 const App = () => (
   <div>
